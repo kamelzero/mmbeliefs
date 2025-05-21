@@ -69,13 +69,20 @@ def check_required_env_vars():
     missing_vars = [var for var in required_vars if not os.getenv(var)]
     if missing_vars:
         raise EnvironmentError(f"Missing required environment variables: {', '.join(missing_vars)}")
+    
+    # Backup the original OpenAI API key
+    os.environ['ORIGINAL_OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
 
 def run_model_evaluation(model_name: str, config: Dict):
     """Run evaluation for a specific model."""
     logging.info(f"Starting evaluation for {model_name}")
     
-    # Set environment variables for this run
-    os.environ['OPENAI_API_KEY'] = os.getenv(config['api_key_env'])
+    # For GPT-4, use the original API key, for others use their specific API keys
+    if model_name == 'gpt4':
+        os.environ['OPENAI_API_KEY'] = os.environ['ORIGINAL_OPENAI_API_KEY']
+    else:
+        os.environ['OPENAI_API_KEY'] = os.getenv(config['api_key_env'])
+    
     os.environ['OPENAI_API_BASE'] = config['api_base']
     
     # Construct command
