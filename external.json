@@ -1,0 +1,266 @@
+[
+  {
+    "Ideology": "Liberalism",
+    "Extremity": "Moderate",
+    "Leaning": "Center-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Political_ideologies_in_the_United_States"
+  },
+  {
+    "Ideology": "Social Democracy",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Social_democracy"
+  },
+  {
+    "Ideology": "Environmentalism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://www.npr.org/2022/04/01/1089990539/climate-change-politics"
+  },
+  {
+    "Ideology": "Technocracy",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://journals.sagepub.com/doi/10.1177/0963662520978567"
+  },
+  {
+    "Ideology": "Libertarianism",
+    "Extremity": "Moderate",
+    "Leaning": "Right",
+    "Citation": "https://en.wikipedia.org/wiki/Libertarianism_in_the_United_States"
+  },
+  {
+    "Ideology": "Anarcho-Communism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Anarchist_communism"
+  },
+  {
+    "Ideology": "Communism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Communism"
+  },
+  {
+    "Ideology": "Democratic Socialism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Democratic_socialism"
+  },
+  {
+    "Ideology": "Maoism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Maoism"
+  },
+  {
+    "Ideology": "Trotskyism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Trotskyism"
+  },
+  {
+    "Ideology": "Syndicalism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Syndicalism"
+  },
+  {
+    "Ideology": "Neoliberalism",
+    "Extremity": "Moderate",
+    "Leaning": "Center-Right",
+    "Citation": "https://en.wikipedia.org/wiki/Neoliberalism"
+  },
+  {
+    "Ideology": "Classical Conservatism",
+    "Extremity": "Moderate",
+    "Leaning": "Right",
+    "Citation": "https://en.wikipedia.org/wiki/Conservatism"
+  },
+  {
+    "Ideology": "Green Anarchism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Green_anarchism"
+  },
+  {
+    "Ideology": "Mutualism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Mutualism_(economic_theory)"
+  },
+  {
+    "Ideology": "Pacifism",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Pacifism"
+  },
+  {
+    "Ideology": "Ecofeminism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Ecofeminism"
+  },
+  {
+    "Ideology": "Postmodernism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Postmodernism"
+  },
+  {
+    "Ideology": "Anarcho-Primitivism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Anarcho-primitivism"
+  },
+  {
+    "Ideology": "Juche",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left (Authoritarian)",
+    "Citation": "https://en.wikipedia.org/wiki/Juche"
+  },
+  {
+    "Ideology": "Posadism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Posadism"
+  },
+  {
+    "Ideology": "Marxist-Leninism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Marxism%E2%80%93Leninism"
+  },
+  {
+    "Ideology": "Democratic Confederalism",
+    "Extremity": "Extreme",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Democratic_confederalism"
+  },
+  {
+    "Ideology": "Zionism",
+    "Extremity": "Moderate",
+    "Leaning": "Varies",
+    "Citation": "https://en.wikipedia.org/wiki/Zionism"
+  },
+  {
+    "Ideology": "Anti-Capitalism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Anti-capitalism"
+  },
+  {
+    "Ideology": "Utilitarianism",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Utilitarianism"
+  },
+  {
+    "Ideology": "Islamic Socialism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Islamic_socialism"
+  },
+  {
+    "Ideology": "Secular Humanism",
+    "Extremity": "Moderate",
+    "Leaning": "Center-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Secular_humanism"
+  },
+  {
+    "Ideology": "Transhumanism",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Transhumanism"
+  },
+  {
+    "Ideology": "Agrarianism",
+    "Extremity": "Moderate",
+    "Leaning": "Varies",
+    "Citation": "https://en.wikipedia.org/wiki/Agrarianism"
+  },
+  {
+    "Ideology": "Cosmopolitanism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Cosmopolitanism"
+  },
+  {
+    "Ideology": "Situationism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Situationist_International"
+  },
+  {
+    "Ideology": "Left Accelerationism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Accelerationism"
+  },
+  {
+    "Ideology": "Afrocentrism",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Afrocentrism"
+  },
+  {
+    "Ideology": "National Bolshevism",
+    "Extremity": "Extreme",
+    "Leaning": "Syncretic (Far-Left + Far-Right)",
+    "Citation": "https://en.wikipedia.org/wiki/National_Bolshevism"
+  },
+  {
+    "Ideology": "Communalism (Bookchin)",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Communalism_(Bookchin)"
+  },
+  {
+    "Ideology": "Marxist Feminism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Marxist_feminism"
+  },
+  {
+    "Ideology": "Anti-Work Ideology",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Anti-work"
+  },
+  {
+    "Ideology": "Post-Colonial Theory",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Postcolonialism"
+  },
+  {
+    "Ideology": "Liberation Theology",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Liberation_theology"
+  },
+  {
+    "Ideology": "Techno-Utopianism",
+    "Extremity": "Moderate",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Technological_utopianism"
+  },
+  {
+    "Ideology": "Nihilism",
+    "Extremity": "Extreme",
+    "Leaning": "Other",
+    "Citation": "https://en.wikipedia.org/wiki/Nihilism"
+  },
+  {
+    "Ideology": "Eco-Socialism",
+    "Extremity": "Moderate",
+    "Leaning": "Left",
+    "Citation": "https://en.wikipedia.org/wiki/Eco-socialism"
+  },
+  {
+    "Ideology": "Proudhonism",
+    "Extremity": "Extreme",
+    "Leaning": "Far-Left",
+    "Citation": "https://en.wikipedia.org/wiki/Pierre-Joseph_Proudhon"
+    }
+]

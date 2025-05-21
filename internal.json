@@ -1,0 +1,165 @@
+[
+    {
+      "Ideology": "Anti-Ukrainian",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://freedomhouse.org/report/analytical-brief/2018/far-right-extremism-threat-ukrainian-democracy"
+    },
+    {
+      "Ideology": "Incel",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://home-affairs.ec.europa.eu/system/files/2021-10/ran_incels_first_scan_of_phenomen_and_relevance_challenges_for_p-cve_202110_en.pdf"
+    },
+    {
+      "Ideology": "Nazi",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.britannica.com/event/Nazism"
+    },
+    {
+      "Ideology": "Hindu Supremacist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://politicalresearch.org/2024/10/30/hindu-supremacy-and-multiracial-us-far-right"
+    },
+    {
+      "Ideology": "Fascist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.britannica.com/topic/fascism"
+    },
+    {
+      "Ideology": "Holocaust denial",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/holocaust-denial/"
+    },
+    {
+      "Ideology": "Christian Nationalist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.tandfonline.com/doi/full/10.1080/21567689.2025.2478557"
+    },
+    {
+      "Ideology": "Anti-Muslim",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/anti-muslim/"
+    },
+    {
+      "Ideology": "Neo-Nazi",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/neo-nazi/"
+    },
+    {
+      "Ideology": "Ku Klux Klan",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ku-klux-klan/"
+    },
+    {
+      "Ideology": "Antigovernment",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://extremism.gwu.edu/sites/g/files/zaxdzs5746/files/Surveying%20The%20Landscape%20of%20the%20American%20Far%20Right_0.pdf"
+    },
+    {
+      "Ideology": "Christian Identity",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.adl.org/resources/backgrounder/christian-identity"
+    },
+    {
+      "Ideology": "White Nationalist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/white-nationalist/"
+    },
+    {
+      "Ideology": "Anti-Immigrant",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/anti-immigrant/"
+    },
+    {
+      "Ideology": "Integralist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://en.wikipedia.org/wiki/Brazilian_Integralist_Action"
+    },
+    {
+      "Ideology": "Militia",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://extremism.gwu.edu/sites/g/files/zaxdzs5746/files/Surveying%20The%20Landscape%20of%20the%20American%20Far%20Right_0.pdf"
+    },
+    {
+      "Ideology": "Conspiracy Theory",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/conspiracy-theories"
+    },
+    {
+      "Ideology": "Imperialist",
+      "Extremity": "Extreme",
+      "Leaning": "Right",
+      "Citation": "https://en.wikipedia.org/wiki/Imperialism"
+    },
+    {
+      "Ideology": "Anti-LGBTQ",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/anti-lgbtq"
+    },
+    {
+      "Ideology": "Male Supremacist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/male-supremacy"
+    },
+    {
+      "Ideology": "Neo-Confederate",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/neo-confederate"
+    },
+    {
+      "Ideology": "Antisemitic",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.adl.org/resources/glossary-terms/antisemitism"
+    },
+    {
+      "Ideology": "Anti-Trans",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/anti-lgbtq"
+    },
+    {
+      "Ideology": "Accelerationist",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://icct.nl/publication/base-and-basis-listing-far-right-terror-groups"
+    },
+    {
+      "Ideology": "Identitarian",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/identitarian"
+    },
+    {
+      "Ideology": "Anti-Roma",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.hrw.org/news/2012/07/11/france-anti-roma-rhetoric-fuels-discrimination"
+    },
+    {
+      "Ideology": "Anti-Woman",
+      "Extremity": "Extreme",
+      "Leaning": "Far-Right",
+      "Citation": "https://www.splcenter.org/resources/extremist-files/ideology/male-supremacy"
+    }
+  ]
+  

@@ -24,6 +24,13 @@ The benchmark is intended to support research on:
 
 ## Install
 
+Install firefox, if not already installed.
+```
+sudo apt update
+sudo apt install firefox
+```
+
+Install pyenv, if not already installed.
 ```
 curl -fsSL https://pyenv.run | bash
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -40,4 +47,61 @@ pyenv activate mmbeliefs-311
 python3.11 -m venv .venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
+```
+
+# Preparing Data
+
+Scrape data from the web. This outputs results_with_images.json and images files under images/.
+```
+python3 scrape_data.py
+```
+
+Generate task data questions from the scraped data. This outputs task_data.json
+```
+python3 generate_questions.py
+```
+
+Create a Hugging Face dataset from the task data.
+```
+python3 create_hfdataset.py
+```
+
+# Running Evaluation
+
+## Setup Environment Variables
+
+In ~/.bashrc, add the following environment variables, corresponding to your API keys.
+```
+HF_TOKEN
+GOOGLE_API_KEY
+ANTHROPIC_API_KEY
+OPENAI_API_KEY
+```
+
+## Setup up lmms-eval
+
+Clone lmms-eval repo, potentially in a different directory and follow the development install directions specified here: https://github.com/EvolvingLMMs-Lab/lmms-eval/
+
+```
+git clone https://github.com/EvolvingLMMs-Lab/lmms-eval
+# ... follow the development install directions ...
+```
+
+Copy mmbeliefs_mcq.py runner file
+```
+cp lmms-eval-files/mmbeliefs_mcq.py lmms-eval/examples/models/
+```
+
+Update the HF dataset path to your HF dataset_path here: `lmms-eval-files/mmbeliefs_mcq/_default_template_fringe_yaml`
+
+Copy mmbeliefs_mcq task files
+```
+cp -r mmbeliefs_mcq lmms-eval/lmms-eval/tasks/
+```
+
+## Run the Benchmark Task
+
+Run evaluation
+```
+python3 lmms-eval/examples/models/mmbeliefs_mcq.py
 ```
