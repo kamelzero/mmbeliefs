@@ -24,12 +24,12 @@ logging.basicConfig(
 
 # Define model configurations
 MODEL_CONFIGS = {
-    'mistral': {
-        'api_base': "https://router.huggingface.co/nebius/v1",
-        'model_version': "mistralai/Mistral-Small-3.1-24B-Instruct-2503",
-        'api_key_env': 'HF_TOKEN',
-        'output_dir': "mistral-small-3.1-24b-instruct-2503_api"
-    },
+    # 'mistral': {
+    #     'api_base': "https://router.huggingface.co/nebius/v1",
+    #     'model_version': "mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+    #     'api_key_env': 'HF_TOKEN',
+    #     'output_dir': "mistral-small-3.1-24b-instruct-2503_api"
+    # },
     'gemini': {
         'api_base': "https://generativelanguage.googleapis.com/v1beta/openai/",
         'model_version': "gemini-2.0-flash",

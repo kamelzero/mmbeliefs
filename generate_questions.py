@@ -39,7 +39,7 @@ for result in results:
         question_text += '\n'.join([f'{ans[0]}) {ans[1]}' for ans in questions])
         task_data.append({  
             'question': question_text,
-            'answer': correct,
+            'answer_target': correct,
             'candidate_answers': [q[1] for q in questions],
             'incorrect_internal_answer': abc[1],
             'incorrect_external_answer': abc[2],
@@ -47,8 +47,13 @@ for result in results:
             'dontknow_answer': 'E',
             'superset_correct_answers': result['Ideology'],
             'image_path': image,
-            'source_info': image
+            'source_info': image,
+            'locations': result['Location'],
+            'symbol_title': result['title']
         })
+
+import pandas as pd
+print("ABC distribution:", pd.DataFrame([d['answer_target'] for d in task_data]).value_counts())
 
 with open("task_data.json", "w") as f:
     json.dump(task_data, f, indent=4)
