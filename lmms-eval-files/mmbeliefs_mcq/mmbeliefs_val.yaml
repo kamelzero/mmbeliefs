@@ -10,8 +10,5 @@ metric_list:
 process_results: !function utils.mmbeliefs_process_results_val
 lmms_eval_specific_kwargs:
   default:
-    pre_prompt: ""
+    pre_prompt: "Answer with one letter (A, B, C) or D if none of the above; do not provide any other text.\n"
     post_prompt: ""
-  plm:
-    pre_prompt: ""
-    post_prompt: "\nGive a very brief answer."
