@@ -1,27 +1,21 @@
 import json
 import argparse
 from PIL import Image
-import cairosvg
 from datasets import Dataset, DatasetDict
 from huggingface_hub import create_repo, delete_repo
+import os
+
 
 def prepare_dataset(raw_data):
     processed_data = []
-    for item in raw_data:
-        # if SVG, convert to PNG
-        if item['image_path'].endswith('.svg'):
-            print(f"Converting {item['image_path']} to PNG")
-            new_path = item['image_path'].replace('.svg', '.png')
-            cairosvg.svg2png(url=item['image_path'], write_to=new_path)
-            item['image_path'] = new_path
-        # Load and store the image in the dataset
+    for item in raw_data:        # Load and store the image in the dataset
         try:
             image = Image.open(item['image_path']).convert('RGB')
             item['image'] = image  # replace path with actual image object
             processed_data.append(item)
         except Exception as e:
             print(f"Error loading image {item['image_path']}: {e}")
-    
+
     # Create dataset and wrap it in DatasetDict with 'test' split
     dataset = Dataset.from_list(processed_data)
     dataset_dict = DatasetDict({"validation": dataset})
@@ -30,8 +24,8 @@ def prepare_dataset(raw_data):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_images", type=int, default=-1)
-    parser.add_argument("--task_data_path", type=str, default="task_data.json")
-    parser.add_argument("--dataset_name", type=str, default="mmbeliefs_mcq")
+    parser.add_argument("--task_data_path", type=str, default="task_data_fc.json")
+    parser.add_argument("--dataset_name", type=str, default="mmbeliefs_mcq_fc")
     parser.add_argument("--private", type=bool, default=True)
     args = parser.parse_args()
 

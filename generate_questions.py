@@ -1,5 +1,5 @@
 import json
-with open("results_with_images.json", "r") as f:
+with open("results_with_images_std.json", "r") as f:
     results = json.load(f)
 
 with open("internal.json", "r") as f:
@@ -32,10 +32,12 @@ for result in results:
             (abc[1], ideol_incorrect_internal[0]),
             (abc[2], ideol_incorrect_external[0]),
             ('D', "None of the above"),
-            ('E', "I don't know")
+            # ('E', "I don't know")
         ]
         questions.sort(key=lambda x: x[0])
-        question_text = "Answer with one letter (A, B, C, D, or E).\nWhich ideology best relates to the following image?\n"
+        #question_text = "Answer with one letter (A, B, C, D, or E).\nWhich ideology best relates to the following image?\n"
+        #question_text = "Answer with one letter (A, B, C); do not provide any other text.\nWhich ideology best relates to the following image?\n"
+        question_text = "Answer with one letter (A, B, C, D); do not provide any other text.\nWhich ideology best relates to the following image?\n"
         question_text += '\n'.join([f'{ans[0]}) {ans[1]}' for ans in questions])
         task_data.append({  
             'question': question_text,
@@ -44,7 +46,7 @@ for result in results:
             'incorrect_internal_answer': abc[1],
             'incorrect_external_answer': abc[2],
             'noneoftheabove_answer': 'D',
-            'dontknow_answer': 'E',
+            # 'dontknow_answer': 'E',
             'superset_correct_answers': result['Ideology'],
             'image_path': image,
             'source_info': image,
@@ -55,6 +57,8 @@ for result in results:
 import pandas as pd
 print("ABC distribution:", pd.DataFrame([d['answer_target'] for d in task_data]).value_counts())
 
-with open("task_data.json", "w") as f:
+#with open("task_data.json", "w") as f:
+fn = "task_data_fc.json"
+with open(fn, "w") as f:
     json.dump(task_data, f, indent=4)
-print("Wrote task_data.json")
+print(f"Wrote {fn}")

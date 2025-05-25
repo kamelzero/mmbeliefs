@@ -56,12 +56,17 @@ Scrape data from the web. This outputs results_with_images.json and images files
 python3 scrape_data.py
 ```
 
-Generate task data questions from the scraped data. This outputs task_data.json
+Standardize the images. By default, this outputs results_with_images_std.json and images_std/.
+```
+python3 standardize_images.py
+```
+
+Generate task data questions from the scraped data. This outputs task_data_fc.json
 ```
 python3 generate_questions.py
 ```
 
-Create a Hugging Face dataset from the task data.
+Create a Hugging Face dataset from the task data. By default, this pushes mmbeliefs_mcq to your HF account.
 ```
 python3 create_hfdataset.py
 ```
@@ -105,3 +110,8 @@ Run evaluation
 ```
 python3 lmms-eval/examples/models/mmbeliefs_mcq.py
 ```
+
+# Important Notes
+
+For Gemini 2.5 models, to pass images, use the gemini_api model rather than the openai compatible one.
+Also, for Gemini 2.5 models, passing generation_config causes the model to return nothing.
