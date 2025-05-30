@@ -68,9 +68,9 @@ MODEL_CONFIGS = {
     },
     'llama-4-maverick': {
         'lmms_model':"openai_compatible",
-        'api_base': "https://router.huggingface.co/sambanova/v1",
-        'model_version': "Llama-4-Maverick-17B-128E-Instruct",
-        'api_key_env': 'HF_TOKEN',
+        'api_base': "https://api.groq.com/openai/v1",
+        'model_version': "meta-llama/llama-4-maverick-17b-128e-instruct",
+        'api_key_env': 'GROQ_API_KEY',
         'output_dir': "llama4_maverick_17b_128e_instruct_api"
     },
     'llama-4-scout': {

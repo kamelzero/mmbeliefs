@@ -6,6 +6,7 @@ from datasets import Dataset, DatasetDict
 from huggingface_hub import create_repo, delete_repo
 import os
 import shutil
+import numpy as np
 
 def compress_image(in_path, max_size_mb=5):
     quality = 95
@@ -25,18 +26,76 @@ def check_valid_image_size(im_path, max_size_mb=5):
     size = os.path.getsize(im_path)
     return size <= MAX_SIZE_BYTES
 
-def resize_with_padding(im_path, images_output_dir, target_size=(448, 448), fill_color=(0, 0, 0)):
+def get_contrasting_background(img):
+    """
+    Analyze the non-transparent pixels of the image and return a contrasting background color.
+    Returns white if the image is predominantly dark, black if it's predominantly light.
+    """
+    # Convert image to numpy array with alpha
+    img_array = np.array(img)
+    
+    # Handle different modes
+    if img.mode == 'RGBA':
+        mask = img_array[:, :, 3] > 0
+        foreground_pixels = img_array[mask][:, :3]
+    elif img.mode == 'LA':
+        mask = img_array[:, :, 1] > 0  # Alpha is the second channel
+        foreground_pixels = img_array[mask][:, 0]  # Just the luminance channel
+    else:
+        foreground_pixels = img_array.reshape(-1, 3) if len(img_array.shape) == 3 else img_array.reshape(-1)
+    
+    if len(foreground_pixels) == 0:
+        return (255, 255, 255)  # Default to white if image is fully transparent
+    
+    # Calculate average brightness
+    if img.mode == 'LA' or len(foreground_pixels.shape) == 1:
+        brightness = np.average(foreground_pixels)
+    else:
+        # Using perceived brightness formula: 0.299R + 0.587G + 0.114B
+        brightness = np.average(
+            foreground_pixels[:, 0] * 0.299 +
+            foreground_pixels[:, 1] * 0.587 +
+            foreground_pixels[:, 2] * 0.114
+        )
+    
+    # Return white for dark images, black for light images
+    return (0, 0, 0) if brightness > 127 else (255, 255, 255)
+
+def resize_with_padding(im_path, images_output_dir, target_size=(448, 448), fill_color=None):
     """
     Resize image to target size with padding.
-    Save the resized image to the same path.
+    The larger dimension will be scaled to target size while preserving aspect ratio.
+    Then pad the smaller dimension with an automatically chosen contrasting color.
     """
     img = Image.open(im_path)
     if img.size == target_size:
         return im_path
-    img.thumbnail(target_size, Image.Resampling.LANCZOS)
+    
+    # If fill_color is not specified, choose it based on image content
+    if fill_color is None and (img.mode == 'RGBA' or img.mode == 'LA'):
+        fill_color = get_contrasting_background(img)
+    elif fill_color is None:
+        fill_color = (0, 0, 0)  # Default to black for non-transparent images
+    
+    # Convert RGBA or LA to RGB with background color
+    if img.mode in ('RGBA', 'LA'):
+        # Create a new background image with the chosen fill_color
+        background = Image.new('RGB', img.size, fill_color)
+        # Paste the image using its alpha channel as mask
+        if img.mode == 'RGBA':
+            background.paste(img, mask=img.split()[3])
+        else:  # LA mode
+            background.paste(img.convert('L'), mask=img.split()[1])
+        img = background
+    
+    # Calculate scaling ratio based on larger dimension
+    ratio = max(target_size[0] / img.size[0], target_size[1] / img.size[1])
+    new_size = tuple(int(dim * ratio) for dim in img.size)
+    img = img.resize(new_size, Image.Resampling.LANCZOS)
+    
     new_img = Image.new("RGB", target_size, fill_color)
-    left = (target_size[0] - img.size[0]) // 2
-    top = (target_size[1] - img.size[1]) // 2
+    left = (target_size[0] - new_size[0]) // 2
+    top = (target_size[1] - new_size[1]) // 2
     new_img.paste(img, (left, top))
     new_img.save(os.path.join(images_output_dir, os.path.basename(im_path)))
     return im_path
