@@ -78,6 +78,7 @@ python3 create_hfdataset.py
 In ~/.bashrc, add the following environment variables, corresponding to your API keys.
 ```
 HF_TOKEN
+GROQ_API_KEY
 GOOGLE_API_KEY
 ANTHROPIC_API_KEY
 OPENAI_API_KEY
