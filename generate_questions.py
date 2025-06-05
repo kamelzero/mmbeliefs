@@ -17,6 +17,13 @@ assert len(external_ideologies) == len(set(external_ideologies))
 import random
 random.seed(1)
 
+# Initialize counters for each answer type in each position
+position_counts = {
+    'correct': {'A': 0, 'B': 0, 'C': 0},
+    'incorrect_internal': {'A': 0, 'B': 0, 'C': 0},
+    'incorrect_external': {'A': 0, 'B': 0, 'C': 0}
+}
+
 abc = ['A', 'B', 'C']
 task_data = []
 for result in results:
@@ -25,28 +32,55 @@ for result in results:
         ideol_correct = random.sample(result['Ideology'], 1)
         ideol_incorrect_internal = random.sample(ideol_incorrect_internal, 1)
         ideol_incorrect_external = random.sample(external_ideologies, 1)
-        random.shuffle(abc)
-        correct = abc[0] # index 0 of the shuffled letters is correct
-        questions = [
-            (abc[0], ideol_correct[0]), 
-            (abc[1], ideol_incorrect_internal[0]),
-            (abc[2], ideol_incorrect_external[0]),
-            ('D', "None of the above"),
-            # ('E', "I don't know")
-        ]
+        
+        # Create answer mapping
+        answers = {
+            'correct': ideol_correct[0],
+            'incorrect_internal': ideol_incorrect_internal[0],
+            'incorrect_external': ideol_incorrect_external[0]
+        }
+        
+        # Find the most balanced arrangement
+        min_imbalance = float('inf')
+        best_arrangement = None
+        
+        for perm in [('correct', 'incorrect_internal', 'incorrect_external'),
+                    ('correct', 'incorrect_external', 'incorrect_internal'),
+                    ('incorrect_internal', 'correct', 'incorrect_external'),
+                    ('incorrect_internal', 'incorrect_external', 'correct'),
+                    ('incorrect_external', 'correct', 'incorrect_internal'),
+                    ('incorrect_external', 'incorrect_internal', 'correct')]:
+            # Calculate imbalance score for this arrangement
+            imbalance = sum(position_counts[ans_type][pos] 
+                          for ans_type, pos in zip(perm, abc))
+            if imbalance < min_imbalance:
+                min_imbalance = imbalance
+                best_arrangement = perm
+        
+        # Update position counts and create questions
+        questions = []
+        for ans_type, pos in zip(best_arrangement, abc):
+            position_counts[ans_type][pos] += 1
+            questions.append((pos, answers[ans_type]))
+            if ans_type == 'correct':
+                correct = pos
+        
         questions.sort(key=lambda x: x[0])
-        #question_text = "Answer with one letter (A, B, C, D, or E).\nWhich ideology best relates to the following image?\n"
-        #question_text = "Answer with one letter (A, B, C); do not provide any other text.\nWhich ideology best relates to the following image?\n"
+        questions += ('D', "None of the above"),
         question_text = "Answer with one letter (A, B, C, D); do not provide any other text.\nWhich ideology best relates to the following image?\n"
         question_text += '\n'.join([f'{ans[0]}) {ans[1]}' for ans in questions])
+        
+        # Find which positions contain incorrect answers
+        incorrect_internal_pos = next(pos for ans_type, pos in zip(best_arrangement, abc) if ans_type == 'incorrect_internal')
+        incorrect_external_pos = next(pos for ans_type, pos in zip(best_arrangement, abc) if ans_type == 'incorrect_external')
+        
         task_data.append({  
             'question': question_text,
             'answer_target': correct,
             'candidate_answers': [q[1] for q in questions],
-            'incorrect_internal_answer': abc[1],
-            'incorrect_external_answer': abc[2],
+            'incorrect_internal_answer': incorrect_internal_pos,
+            'incorrect_external_answer': incorrect_external_pos,
             'noneoftheabove_answer': 'D',
-            # 'dontknow_answer': 'E',
             'superset_correct_answers': result['Ideology'],
             'image_path': image,
             'source_info': image,
@@ -55,10 +89,12 @@ for result in results:
         })
 
 import pandas as pd
-print("ABC distribution:", pd.DataFrame([d['answer_target'] for d in task_data]).value_counts())
+print("\nABC distribution for correct answers:", pd.DataFrame([d['answer_target'] for d in task_data]).value_counts())
+print("\nPosition counts for each answer type:")
+for ans_type, counts in position_counts.items():
+    print(f"{ans_type}:", counts)
 
-#with open("task_data.json", "w") as f:
 fn = "task_data_fc.json"
 with open(fn, "w") as f:
     json.dump(task_data, f, indent=4)
-print(f"Wrote {fn}")
+print(f"\nWrote {fn}")

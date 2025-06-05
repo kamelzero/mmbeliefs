@@ -64,12 +64,15 @@ def get_contrasting_background(img):
 def resize_with_padding(im_path, images_output_dir, target_size=(448, 448), fill_color=None):
     """
     Resize image to target size with padding.
-    The larger dimension will be scaled to target size while preserving aspect ratio.
-    Then pad the smaller dimension with an automatically chosen contrasting color.
+    The image will be scaled up or down to match the target size in one dimension while preserving aspect ratio.
+    The other dimension will be padded if needed to reach the target size.
+    No cropping is performed.
     """
     img = Image.open(im_path)
     if img.size == target_size:
-        return im_path
+        output_path = os.path.join(images_output_dir, os.path.basename(im_path))
+        img.save(output_path)
+        return output_path
     
     # If fill_color is not specified, choose it based on image content
     if fill_color is None and (img.mode == 'RGBA' or img.mode == 'LA'):
@@ -88,8 +91,13 @@ def resize_with_padding(im_path, images_output_dir, target_size=(448, 448), fill
             background.paste(img.convert('L'), mask=img.split()[1])
         img = background
     
-    # Calculate scaling ratio based on larger dimension
-    ratio = max(target_size[0] / img.size[0], target_size[1] / img.size[1])
+    # Calculate scaling ratios for both dimensions
+    ratio_w = target_size[0] / img.size[0]
+    ratio_h = target_size[1] / img.size[1]
+    # Use the smaller ratio to ensure the image fits in the target size
+    # This will scale up small images and scale down large images
+    ratio = min(ratio_w, ratio_h)
+    
     new_size = tuple(int(dim * ratio) for dim in img.size)
     img = img.resize(new_size, Image.Resampling.LANCZOS)
     
@@ -97,8 +105,10 @@ def resize_with_padding(im_path, images_output_dir, target_size=(448, 448), fill
     left = (target_size[0] - new_size[0]) // 2
     top = (target_size[1] - new_size[1]) // 2
     new_img.paste(img, (left, top))
-    new_img.save(os.path.join(images_output_dir, os.path.basename(im_path)))
-    return im_path
+    
+    output_path = os.path.join(images_output_dir, os.path.basename(im_path))
+    new_img.save(output_path)
+    return output_path
 
 def prepare_dataset(results_input_path, results_output_path, images_output_dir, max_size_mb=5, verbose=False):
     with open(results_input_path, "r") as f:
