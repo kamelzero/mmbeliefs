@@ -1,3 +1,4 @@
+import os
 import json
 with open("results_with_images_std.json", "r") as f:
     results = json.load(f)
@@ -14,8 +15,11 @@ with open("external.json", "r") as f:
 external_ideologies = [sis['Ideology'] for sis in external_ideologies]
 assert len(external_ideologies) == len(set(external_ideologies))
 
+with open('image_labels.json', 'r') as f:
+    image_labels_dict = json.load(f)
+
 import random
-random.seed(1)
+random.seed(42)
 
 # Initialize counters for each answer type in each position
 position_counts = {
@@ -73,8 +77,10 @@ for result in results:
         # Find which positions contain incorrect answers
         incorrect_internal_pos = next(pos for ans_type, pos in zip(best_arrangement, abc) if ans_type == 'incorrect_internal')
         incorrect_external_pos = next(pos for ans_type, pos in zip(best_arrangement, abc) if ans_type == 'incorrect_external')
-        
-        task_data.append({  
+
+        image_bn = os.path.basename(image)
+        assert image_bn in image_labels_dict, f"Image {image_bn} not found in image_labels_dict"
+        task_data.append({
             'question': question_text,
             'answer_target': correct,
             'candidate_answers': [q[1] for q in questions],
@@ -85,7 +91,8 @@ for result in results:
             'image_path': image,
             'source_info': image,
             'locations': result['Location'],
-            'symbol_title': result['title']
+            'symbol_title': result['title'],
+            'image_labels': image_labels_dict.get(image_bn)
         })
 
 import pandas as pd
@@ -94,7 +101,7 @@ print("\nPosition counts for each answer type:")
 for ans_type, counts in position_counts.items():
     print(f"{ans_type}:", counts)
 
-fn = "task_data_fc.json"
+fn = "task_data.json"
 with open(fn, "w") as f:
     json.dump(task_data, f, indent=4)
 print(f"\nWrote {fn}")
