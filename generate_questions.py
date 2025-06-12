@@ -3,19 +3,19 @@ import json
 with open("results_with_images_std.json", "r") as f:
     results = json.load(f)
 
-with open("internal.json", "r") as f:
+with open(os.path.join('assets', "internal.json"), "r") as f:
     internal_ideologies = json.load(f)
 internal_ideologies = [sis['Ideology'] for sis in internal_ideologies]
 internal_ideologies_set = set(internal_ideologies)
 assert len(internal_ideologies) == len(internal_ideologies_set)
 internal_ideologies_set = set([rr for r in results for rr in r['Ideology']])
 
-with open("external.json", "r") as f:
+with open(os.path.join('assets', "external.json"), "r") as f:
     external_ideologies = json.load(f)
 external_ideologies = [sis['Ideology'] for sis in external_ideologies]
 assert len(external_ideologies) == len(set(external_ideologies))
 
-with open('image_labels.json', 'r') as f:
+with open(os.path.join('assets', 'image_labels.json'), 'r') as f:
     image_labels_dict = json.load(f)
 
 import random

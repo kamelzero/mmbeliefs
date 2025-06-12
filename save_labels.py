@@ -1,3 +1,13 @@
+"""
+This is a simple script to faciliate labeling images from subdirectories of a LABELS/ directory.
+
+It does the following:
+1. Loads the labels from the LABELS directory
+2. Saves the labels to a JSON file
+
+The labeling process has already been performed, you don't need to reuse this script.
+"""
+
 import json
 import os
 
@@ -30,5 +40,6 @@ for file in all_files:
             if subdir != 'other':
                 file_to_cats[file].append(subdir)
 
-with open('image_labels.json', 'w') as f:
+os.makedirs('assets', exist_ok=True)
+with open(os.path.join('assets', 'image_labels.json'), 'w') as f:
     json.dump(file_to_cats, f, indent=4)

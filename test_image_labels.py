@@ -4,7 +4,7 @@ import pytest
 
 def test_all_images_are_labeled():
     """Test to ensure all images in images_std directory have corresponding labels."""
-    with open('image_labels.json', 'r') as f:
+    with open(os.path.join('assets', 'image_labels.json'), 'r') as f:
         image_labels_dict = json.load(f)
 
     image_files = os.listdir('images_std')
