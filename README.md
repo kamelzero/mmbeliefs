@@ -22,97 +22,141 @@ The benchmark is intended to support research on:
 - **Ideological taxonomy**: Organized by source and theme for granular analysis
 - **Baseline results**: Initial results for popular LLMs and VLMs (e.g., GPT-4, Claude, LLaVA)
 
-## Install
+## Development Requirements
 
-Install firefox, if not already installed.
-```
+- Python 3.11.8
+- Firefox browser
+- Git
+- pyenv (for Python version management)
+- Access to various API services (OpenAI, Anthropic, Google, etc.)
+
+## Installation
+
+### 1. System Dependencies
+
+Install Firefox browser:
+```bash
 sudo apt update
 sudo apt install firefox
 ```
 
-Install pyenv, if not already installed.
-```
+### 2. Python Environment Setup
+
+Install pyenv (if not already installed):
+```bash
 curl -fsSL https://pyenv.run | bash
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
-```
+Set up Python environment:
+```bash
 pyenv install 3.11.8
-pyenv virtualenv 3.11.8 mmbeliefs-311
-pyenv activate mmbeliefs-311
-```
-
-```
 python3.11 -m venv .venv
 source .venv/bin/activate
+
+# Install dependencies
 uv pip install -r requirements.txt
 ```
 
-# Preparing Data
+### 3. Environment Variables
 
-Scrape data from the web. This outputs results_with_images.json and images files under images/.
+Add the following to your `~/.bashrc`:
+```bash
+export HF_TOKEN="your_huggingface_token"
+export GROQ_API_KEY="your_groq_key"
+export GOOGLE_API_KEY="your_google_key"
+export ANTHROPIC_API_KEY="your_anthropic_key"
+export OPENAI_API_KEY="your_openai_key"
 ```
+
+Then run:
+```bash
+source ~/.bashrc
+```
+
+## Data Preparation Pipeline
+
+1. **Scrape Data**
+```bash
 python3 scrape_data.py
+# Outputs: results_with_images.json and images/
 ```
 
-Standardize the images. By default, this outputs results_with_images_std.json and images_std/.
-```
+2. **Standardize Images**
+```bash
 python3 standardize_images.py
+# Outputs: results_with_images_std.json and images_std/
 ```
 
-Generate task data questions from the scraped data. This outputs task_data_fc.json
-```
+3. **Generate Task Questions**
+```bash
 python3 generate_questions.py
+# Outputs: task_data_fc.json
 ```
 
-Create a Hugging Face dataset from the task data. By default, this pushes mmbeliefs_mcq to your HF account.
-```
+4. **Create HuggingFace Dataset**
+```bash
 python3 create_hfdataset.py
+# Pushes mmbeliefs_mcq to your HF account
 ```
 
-# Running Evaluation
+## Testing
 
-## Setup Environment Variables
+Run the test suite to ensure everything is working correctly:
+```bash
+# Run all tests
+pytest
 
-In ~/.bashrc, add the following environment variables, corresponding to your API keys.
+# Run specific test files
+pytest test_image_labels.py
+pytest test_standardize_images.py
 ```
-HF_TOKEN
-GROQ_API_KEY
-GOOGLE_API_KEY
-ANTHROPIC_API_KEY
-OPENAI_API_KEY
-```
 
-## Setup up lmms-eval
+## Evaluation Setup
 
-Clone lmms-eval repo, potentially in a different directory and follow the development install directions specified here: https://github.com/EvolvingLMMs-Lab/lmms-eval/
+### 1. Set up lmms-eval
 
-```
+Clone and install lmms-eval:
+```bash
 git clone https://github.com/EvolvingLMMs-Lab/lmms-eval
-# ... follow the development install directions ...
+cd lmms-eval
+# Follow development install directions from: https://github.com/EvolvingLMMs-Lab/lmms-eval/
 ```
 
-Copy mmbeliefs_mcq.py runner file
-```
+### 2. Configure Evaluation Files
+
+Copy necessary files:
+```bash
+# Copy model runner
 cp lmms-eval-files/mmbeliefs_mcq.py lmms-eval/examples/models/
-```
 
-Update the HF dataset path to your HF dataset_path here: `lmms-eval-files/mmbeliefs_mcq/_default_template_fringe_yaml`
-
-Copy mmbeliefs_mcq task files
-```
+# Copy task files
 cp -r mmbeliefs_mcq lmms-eval/lmms-eval/tasks/
 ```
 
-## Run the Benchmark Task
+Important: Update the HuggingFace dataset path in:
+`lmms-eval-files/mmbeliefs_mcq/_default_template_fringe_yaml`
 
-Run evaluation
-```
+### 3. Run Evaluation
+
+Execute the benchmark:
+```bash
 python3 lmms-eval/examples/models/mmbeliefs_mcq.py
 ```
 
-# Important Notes
+## Known Issues and Notes
 
-For Gemini 2.5 models, to pass images, use the gemini_api model rather than the openai compatible one.
-Also, for Gemini 2.5 models, passing generation_config causes the model to return nothing.
+- Gemini 2.5 models require very high max_new_tokens; see lmms-eval-files/NOTES.md for suggested approach.
+- The evaluation process requires valid API keys for all services
+- Ensure sufficient disk space for image storage and processing
+
+## Contributing
+
+Please refer to our contributing guidelines for information on how to submit issues, feature requests, and pull requests.
+
+## License
+
+[Add license information here]

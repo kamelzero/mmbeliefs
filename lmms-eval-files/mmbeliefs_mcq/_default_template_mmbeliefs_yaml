@@ -1,4 +1,4 @@
-dataset_path: Kamel0/mmbeliefs_mcq_fc
+dataset_path: Kamel0/mmbeliefs_mcq
 dataset_kwargs:
   token: True
 output_type: generate_until
@@ -6,6 +6,7 @@ doc_to_visual: !function utils.mmbeliefs_doc_to_visual
 doc_to_text: !function utils.mmbeliefs_doc_to_text
 doc_to_target: "answer"
 generation_kwargs:
-  max_new_tokens: 16
+  temperature: 0
+  max_new_tokens: 4096
 metadata:
   - version: 0.0
